@@ -3,11 +3,11 @@ Full stack toolbox for a child quant.
 
 ## Contents
 - Data Source
-- Factors Generation
+- Factors Generator
 - Optimizer
-- Factors Testing
-- Strategy Backtesting
+- Factors Testing Framework
+- Strategy Backtesting Framework
 
-What's more?
+## What's more?
 - Fund Data Source
-- Fund Strategy Testing
+- Fund Strategy Testing Framework
