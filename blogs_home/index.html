@@ -1,0 +1,65 @@
+---
+layout: default
+---
+
+<div class="list content-container">
+	<!-- <input id="blog-search" type="text" oninput="filterPosts(this.value)"> -->
+
+	{% if paginator.posts.size == 0 %}
+	<h2>No post found</h2>
+	{% else %}
+	
+	<!-- This loops through the paginated posts -->
+	{% for post in paginator.posts %}
+<!-- 		New style		 -->
+	<div class="card mb-4">
+          <div class="card-body">
+            <a href="{{ post.url }}" ><h3 class="card-title" >{{ post.title }}</h3> </a>
+		  {% for tag in post.tags %}
+            <span class="badge badge-primary">{{ tag }}</span>
+		  {% endfor %}
+            <p class="card-text">{{ post.description }}</p>
+                     </div>
+		
+          <div class="card-footer text-muted">
+            Posted on {{ post.date | date_to_string }} by
+		  {% for author in post.authors %}
+		  	{% if forloop.last == true %}
+           			<span>{{ author }}</span>
+		  	{% else %}
+		  		<span>{{ author }},</span>
+		  	{% endif %}
+		  {% endfor %}
+          </div>
+        </div>
+
+		{% endfor %}
+		{% endif %}
+{% if paginator.total_pages > 1 %}
+<div class="pagination justify-content-center mb-4">
+  {% if paginator.previous_page %}
+    <a class="page-link" href="{{ paginator.previous_page_path }}">&laquo; Prev</a>
+  {% else %}
+    <span class="page-link">&laquo; Prev</span>
+  {% endif %}
+
+  {% for page in (1..paginator.total_pages) %}
+    {% if page == paginator.page %}
+      <li class="page-item active">	
+      <span class="page-link">{{ page }}</span></li>
+    {% elsif page == 1 %}
+      <a class="page-link" href="{{ '/blogs_home/'  }}">{{ page }}</a>
+    {% else %}
+      <a class="page-link" href="{{ site.paginate_path | replace: ':num', page }}">{{ page }}</a>
+    {% endif %}
+  {% endfor %}
+
+  {% if paginator.next_page %}
+    <a class="page-link" href="{{ paginator.next_page_path }}">Next &raquo;</a>
+  {% else %}
+    <span class="page-link">Next &raquo;</span>
+  {% endif %}
+</div>
+{% endif %}	
+	
+</div>
