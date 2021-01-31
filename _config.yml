@@ -13,7 +13,7 @@ nav:
 sass:
   sass_dir: assets/css
 future: true
-baseurl: /pages/zyuan/IA_Data_Analytics_Platform
+
 
 # Pagination
 paginate:           7
